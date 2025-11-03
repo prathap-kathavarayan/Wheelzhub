@@ -38,8 +38,8 @@ class UserCreate(BaseModel):
     number: str
     password_hash: str
 
-@app.post("/register")
-def register_user(user: UserCreate, db: Session = Depends(get_db)):
+@app.post("/signup")
+def signup_user(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter((User.email == user.email) | (User.number == user.number)).first()
 
     if existing_user:
@@ -56,13 +56,13 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
     db.refresh(new_user)
     return {"message": "User registered successfully", "user_id": new_user.id}
 
+@app.get("/login")
+def login_user(email: str, password_hash: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == email, User.password_hash == password_hash).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    return {"message": "Login successful",}
+
 @app.get("/")
 def read_root():
     return {"message": "🚀 FastAPI + PostgreSQL running successfully!"}
-
-@app.get("/users/{user_id}")
-def read_user(user_id: int, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return {"id": user.id, "name": user.name, "email": user.email, "number": user.number}
