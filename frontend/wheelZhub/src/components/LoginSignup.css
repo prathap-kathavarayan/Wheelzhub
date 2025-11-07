@@ -1,66 +1,104 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0;
 }
 
 .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    width: 30%;
-    border: 3px solid #ccc;
-    border-radius: 2%;
-    background-color: rgb(28, 182, 243);
-    gap: 40px;
-    box-shadow: 9px 10px 10px rgb(28, 182, 243);
-    color: white;
-    text-shadow: 1px 1px 6px white, 0 0 25px rgb(61, 61, 76), 0 0 5px darkblue;
+  width: 380px;
+  margin: 80px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  text-align: center;
 }
 
-.login h2 {
-    margin-top: 20px;
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+#lp {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #222;
 }
 
-.login form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.login form input {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+label {
+  display: block;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 5px;
+  text-align: left;
 }
 
-.login form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    background-color: #1f79ef;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
-.login form button:hover {
-    background-color: #155ab6;
-
+input:focus {
+  border-color: #1ac24b;
+  box-shadow: 0 0 0 3px rgba(26, 194, 75, 0.15);
 }
 
-.login label {
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1ac24b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #17a93e;
+}
+
+.msg {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #d9534f;
+}
+
+#fp {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #444;
+}
+
+#fp a {
+  color: #1ac24b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#fp a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  #lp {
     font-size: 20px;
-    font-weight: bold;
-    justify-self: left;
-}
-
-.login input {
-    font-size: 16px;
+  }
 }

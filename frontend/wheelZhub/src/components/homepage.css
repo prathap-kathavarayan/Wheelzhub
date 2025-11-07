@@ -1,0 +1,191 @@
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f6f6f6;
+  color: #222;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 60px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  color: #1ac24b;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #1ac24b;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(to right, #1ac24b, #0f7a2d);
+  color: white;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.hero-text h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  background-color: white;
+  color: #1ac24b;
+  padding: 12px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: #f2f2f2;
+}
+
+/* Rental Cards */
+.rental-options {
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.rental-options h3 {
+  font-size: 28px;
+  margin-bottom: 50px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Make bus card images show the full image without cropping */
+.bus-card img {
+  object-fit: contain;
+  object-position: center;
+  background-color: #f6f6f6; /* fills the letterbox area so it looks consistent */
+}
+
+.card h4 {
+  color: #1ac24b;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.card button {
+  background-color: #1ac24b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.card button:hover {
+  background-color: #17a93e;
+}
+
+/* Footer */
+.footer {
+  background: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #eee;
+  margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 25px;
+    flex-direction: column;
+  }
+
+  .hero-text h2 {
+    font-size: 28px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.bikes-container {
+  text-align: center;
+  padding: 40px;
+  background-color: #f9fafb;
+}
+
+.bikes-container h2 {
+  color: #10b981;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  background-color: #059669;
+}
