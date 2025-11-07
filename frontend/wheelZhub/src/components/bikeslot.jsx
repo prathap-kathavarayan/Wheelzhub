@@ -11,7 +11,7 @@ function Bikes() {
   const navigate = useNavigate();
 
   const bikeList = [
-    { name: "Yamaha R15", img: ktm, desc: "jawa design, 155cc engine." },
+    { name: "Yamaha R15", img: , desc: "jawa design, 155cc engine." },
     { name: "Royal Enfield Classic", img: bikeimg, desc: "Timeless looks, powerful ride." },
     { name: "Honda Activa", img: bikeimg, desc: "Smooth scooter for city rides." },
     { name: "KTM Duke 200", img: bikeimg, desc: "Aggressive street bike for thrill seekers." },
