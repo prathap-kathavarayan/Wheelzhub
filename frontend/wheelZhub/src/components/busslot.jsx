@@ -12,6 +12,12 @@ function Buses() {
     { name: "Tata Marcopolo", img: busimg, desc: "Comfortable seating and smooth travel." },
     { name: "Ashok Leyland", img: busimg, desc: "Spacious bus for group transportation." },
     { name: "Eicher Skyline", img: busimg, desc: "Reliable and efficient travel option." },
+    { name: "Mercedes-Benz Bus", img: busimg, desc: "Premium bus with top-notch amenities." },  
+    { name: "Scania Bus", img: busimg, desc: "High-performance bus for long distances." },
+    { name: "Bharat Benz Bus", img: busimg, desc: "Durable and comfortable for all journeys." },
+    { name: "Isuzu Bus", img: busimg, desc: "Efficient and reliable bus service." },
+    { name: "Hino Bus", img: busimg, desc: "Comfort and safety for passengers alike." },
+    { name: "MAN Bus", img: busimg, desc: "Robust bus designed for long hauls." },
   ];
 
   return (

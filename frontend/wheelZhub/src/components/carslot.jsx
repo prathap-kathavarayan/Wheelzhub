@@ -12,6 +12,12 @@ function Cars() {
     { name: "Maruti Swift", img: carimg, desc: "Reliable and efficient city car." },
     { name: "Tata Nexon", img: carimg, desc: "Comfortable SUV with great mileage." },
     { name: "Honda City", img: carimg, desc: "Premium sedan with smooth performance." },
+    { name: "Ford EcoSport", img: carimg, desc: "Sporty SUV with advanced features." },
+    { name: "Mahindra Thar", img: carimg, desc: "Rugged off-roader for adventure." },
+    { name: "Kia Seltos", img: carimg, desc: "Stylish SUV with modern tech." },
+    { name: "Volkswagen Polo", img: carimg, desc: "German engineering in a compact car." },
+    { name: "Renault Duster", img: carimg, desc: "Spacious SUV for family trips." },
+    { name: "Skoda Octavia", img: carimg, desc: "Luxury sedan with powerful engine." },
   ];
 
   return (
