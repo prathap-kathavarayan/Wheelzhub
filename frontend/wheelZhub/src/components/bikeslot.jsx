@@ -4,23 +4,33 @@ import { useNavigate } from "react-router-dom";
 import bikeimg from "./images/bikeimg.jpg";
 import "./bikeslot.css";
 import "./busslot.css";
-import ktm from "./images/jawa.jpg";
+import bike1 from "./images/bikeimages/bike1.avif";
+import bike2 from "./images/bikeimages/bike2.avif";
+import bike3 from "./images/bikeimages/bike3.avif";
+import bike4 from "./images/bikeimages/bike4.avif";
+import bike5 from "./images/bikeimages/bike5.avif";
+import bike6 from "./images/bikeimages/bike6.avif";
+import bike7 from "./images/bikeimages/bike7.avif";
+import bike8 from "./images/bikeimages/bike8.avif";
+import bike9 from "./images/bikeimages/bike9.avif";
+import bike10 from "./images/bikeimages/bike10.avif";
+
 
 
 function Bikes() {
   const navigate = useNavigate();
 
   const bikeList = [
-    { name: "Yamaha R15", img: , desc: "jawa design, 155cc engine." },
-    { name: "Royal Enfield Classic", img: bikeimg, desc: "Timeless looks, powerful ride." },
-    { name: "Honda Activa", img: bikeimg, desc: "Smooth scooter for city rides." },
-    { name: "KTM Duke 200", img: bikeimg, desc: "Aggressive street bike for thrill seekers." },
-    { name: "Bajaj Pulsar", img: bikeimg, desc: "Performance and style combined." },
-    { name: "TVS Apache", img: bikeimg, desc: "Dynamic design, great handling." },
-    { name: "Suzuki Gixxer", img: bikeimg, desc: "Sleek looks, efficient engine." },
-    { name: "Hero Splendor", img: bikeimg, desc: "Reliable and fuel-efficient." },
-    { name: "Kawasaki Ninja", img: bikeimg, desc: "High-performance sportbike." },
-    { name: "Ducati Monster", img: bikeimg, desc: "Iconic design, thrilling ride." },
+    { name: "Yamaha R15", img: bike1, desc: "jawa design, 155cc engine." },
+    { name: "Royal Enfield Classic", img: bike2, desc: "Timeless looks, powerful ride." },
+    { name: "Honda Activa", img: bike3, desc: "Smooth scooter for city rides." },
+    { name: "KTM Duke 200", img: bike4, desc: "Aggressive street bike for thrill seekers." },
+    { name: "Bajaj Pulsar", img: bike5, desc: "Performance and style combined." },
+    { name: "TVS Apache", img: bike6, desc: "Dynamic design, great handling." },
+    { name: "Suzuki Gixxer", img: bike7, desc: "Sleek looks, efficient engine." },
+    { name: "Hero Splendor", img: bike8, desc: "Reliable and fuel-efficient." },
+    { name: "Kawasaki Ninja", img: bike9, desc: "High-performance sportbike." },
+    { name: "Ducati Monster", img: bike10, desc: "Iconic design, thrilling ride." },
   ];
 
   return (
