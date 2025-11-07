@@ -21,16 +21,16 @@ function Bikes() {
   const navigate = useNavigate();
 
   const bikeList = [
-    { name: "Yamaha R15", img: bike1, desc: "jawa design, 155cc engine." },
-    { name: "Royal Enfield Classic", img: bike2, desc: "Timeless looks, powerful ride." },
-    { name: "Honda Activa", img: bike3, desc: "Smooth scooter for city rides." },
+    { name: "Royal enfield bullet 350", img: bike1, desc: "jawa design, 155cc engine." },
+    { name: "MT-15 Ver 2.0", img: bike2, desc: "Timeless looks, powerful ride." },
+    { name: "Bajaj Pulsar 150", img: bike3, desc: "Smooth scooter for city rides." },
     { name: "KTM Duke 200", img: bike4, desc: "Aggressive street bike for thrill seekers." },
-    { name: "Bajaj Pulsar", img: bike5, desc: "Performance and style combined." },
-    { name: "TVS Apache", img: bike6, desc: "Dynamic design, great handling." },
-    { name: "Suzuki Gixxer", img: bike7, desc: "Sleek looks, efficient engine." },
-    { name: "Hero Splendor", img: bike8, desc: "Reliable and fuel-efficient." },
-    { name: "Kawasaki Ninja", img: bike9, desc: "High-performance sportbike." },
-    { name: "Ducati Monster", img: bike10, desc: "Iconic design, thrilling ride." },
+    { name: "Yamaha FZS FI V4", img: bike5, desc: "Performance and style combined." },
+    { name: "KTM Bike 390 RC BLISTER PACK", img: bike6, desc: "Dynamic design, great handling." },
+    { name: "Honda Dio", img: bike7, desc: "Sleek looks, efficient engine." },
+    { name: "Honda Activa 5G", img: bike8, desc: "Reliable and fuel-efficient." },
+    { name: "Ultraviolette F77 ", img: bike9, desc: "High-performance sportbike." },
+    { name: "Ola Electric Scooter", img: bike10, desc: "Iconic design, thrilling ride." },
   ];
 
   return (
