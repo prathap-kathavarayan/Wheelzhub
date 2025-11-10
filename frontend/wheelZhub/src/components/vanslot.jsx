@@ -44,7 +44,10 @@ function Vans() {
             <img src={van.img} alt={van.name} />
             <h4>{van.name}</h4>
             <p>{van.desc}</p>
-            <button>Book Now</button>
+            <button
+              className="details-btn"
+              onClick={() => navigate("/van-details", { state: van })}>View Details
+            </button>
           </div>
         ))}
       </div>

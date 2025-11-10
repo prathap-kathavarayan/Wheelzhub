@@ -1,191 +1,240 @@
-
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background-color: #f6f6f6;
-  color: #222;
+  background-color: #fafafa;
 }
 
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: #ffffff;
-  padding: 15px 60px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.logo {
-  color: #1ac24b;
-  font-weight: 700;
-  font-size: 22px;
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #444;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: #1ac24b;
+.navbar-brand {
+  color: #007bff !important;
 }
 
 /* Hero Section */
-.hero {
-  background: linear-gradient(to right, #1ac24b, #0f7a2d);
-  color: white;
-  padding: 100px 40px;
-  text-align: center;
-}
-
-.hero-text h2 {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
-.hero-text p {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-.hero-btn {
-  background-color: white;
-  color: #1ac24b;
-  padding: 12px 30px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.hero-btn:hover {
-  background-color: #f2f2f2;
-}
-
-/* Rental Cards */
-.rental-options {
-  padding: 70px 40px;
-  text-align: center;
-}
-
-.rental-options h3 {
-  font-size: 28px;
-  margin-bottom: 50px;
-}
-
-.cards {
+.hero-section {
+  position: relative;
+  background: url("./images/mainimg.jpg") center/cover no-repeat;
+  height: 90vh;
   display: flex;
   justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
   padding: 20px;
-  transition: transform 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-10px);
+.hero-content h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
 }
 
-.card img {
+.hero-content p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Vehicle Cards */
+.vehicle-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  background: #fff;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
-  margin-bottom: 15px;
 }
 
-/* Make bus card images show the full image without cropping */
-.bus-card img {
-  object-fit: contain;
-  object-position: center;
-  background-color: #f6f6f6; /* fills the letterbox area so it looks consistent */
+.vehicle-info h5 {
+  font-weight: 600;
+  color: #333;
 }
 
-.card h4 {
-  color: #1ac24b;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.card p {
+.vehicle-info p {
+  font-size: 0.95rem;
   color: #555;
-  font-size: 15px;
-  margin-bottom: 15px;
 }
 
-.card button {
-  background-color: #1ac24b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.card button:hover {
-  background-color: #17a93e;
+/* About Section */
+.about-section {
+  background: linear-gradient(135deg, #ffcc00, #ff9900);
+  color: #fff;
 }
 
 /* Footer */
 .footer {
-  background: #ffffff;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
-  color: #555;
-  border-top: 1px solid #eee;
-  margin-top: 50px;
+  background: #f8f9fa;
+  font-size: 0.9rem;
+}
+.explore-more {
+  font-family: "Poppins", sans-serif;
+}
+
+.explore-category h5 {
+  color: #333;
+}
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 8px;
+}
+
+.link-grid a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.2s;
+}
+
+.link-grid a:hover {
+  color: #ff7300;
+  text-decoration: underline;
+}
+/* --- WHEELZHUB FOOTER --- */
+
+footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #e5e7eb !important;
+  padding: 80px 20px 40px !important;
+  font-family: "Poppins", sans-serif !important;
+  margin-top: 60px !important;
+  width: 100% !important;
+  position: relative;
+  z-index: 10;
+  min-height: 250px !important;
+}
+
+/* Footer layout */
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 40px;
+}
+
+.footer-section h4 {
+  color: #ffffff;
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.footer-section ul li a:hover {
+  color: #38bdf8;
+}
+
+/* Brand / Logo */
+.footer-logo {
+  color: #38bdf8;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Socials */
+.footer-socials a {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #38bdf8;
+}
+
+/* Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 25px auto 0;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-legal a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-legal a:hover {
+  color: #38bdf8;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 15px 25px;
+  .footer-container {
+    text-align: center;
+  }
+
+  .footer-bottom {
     flex-direction: column;
-  }
-
-  .hero-text h2 {
-    font-size: 28px;
-  }
-
-  .cards {
-    flex-direction: column;
-    align-items: center;
+    gap: 10px;
+    text-align: center;
   }
 }
 
-.bikes-container {
-  text-align: center;
-  padding: 40px;
-  background-color: #f9fafb;
-}
-
-.bikes-container h2 {
-  color: #10b981;
-  margin-bottom: 20px;
-}
-
-.back-btn {
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.back-btn:hover {
-  background-color: #059669;
-}

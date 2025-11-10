@@ -1,12 +1,12 @@
 import React from "react";
-import "./homepage.css"; // reuse same style
+import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-import carimg from "./images/projectcar.avif"; // use your actual image path
-import "./carslot.css"; // optional, same as bikeslot.css
+import "./carslot.css";
+
 import car1 from "./images/carimages/car 1.avif";
 import car2 from "./images/carimages/car 2.avif";
 import car3 from "./images/carimages/car 3.avif";
-import car4 from "./images/carimages/car 4.avif"; 
+import car4 from "./images/carimages/car 4.avif";
 import car5 from "./images/carimages/car 5.avif";
 import car6 from "./images/carimages/car 6.avif";
 import car7 from "./images/carimages/car 7.avif";
@@ -43,7 +43,9 @@ function Cars() {
             <img src={car.img} alt={car.name} />
             <h4>{car.name}</h4>
             <p>{car.desc}</p>
-            <button>Book Now</button>
+            <button onClick={() => navigate("/car-details", { state: car })}>
+              Book Now
+            </button>
           </div>
         ))}
       </div>

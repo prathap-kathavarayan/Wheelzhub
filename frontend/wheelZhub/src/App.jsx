@@ -11,7 +11,9 @@ import CarRental from './components/carslot';
 import Vans from './components/vanslot';
 import Buses from './components/busslot';
 import BikeDetails from './bikedetails';
-
+import Cardetails from './carsdetalis';
+import BusDetails from './busdetalis';
+import VanDetails from './vansdetails';
 
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
         <Route path="/vans" element={<Vans />} />
         <Route path="/buses" element={<Buses />} />
   <Route path="/bike-details" element={<BikeDetails />} />
+  <Route path="/car-details" element={<Cardetails />} />
+  <Route path="/bus-details" element={<BusDetails />} />
+  <Route path="/van-details" element={<VanDetails />} />
 
       </Routes>   
     </BrowserRouter>

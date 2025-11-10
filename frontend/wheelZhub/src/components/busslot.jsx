@@ -43,7 +43,7 @@ function Buses() {
             <img src={bus.img} alt={bus.name} />
             <h4>{bus.name}</h4>
             <p>{bus.desc}</p>
-            <button>Book Now</button>
+          <button onClick={() => navigate("/bus-details", { state: bus })}>View Details</button>
           </div>
         ))}
       </div>
