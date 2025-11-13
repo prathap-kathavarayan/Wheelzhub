@@ -70,7 +70,7 @@ function Home() {
                 <div className="vehicle-info text-center p-3">
                   <h5>{v.title}</h5>
                   <p>{v.desc}</p>
-                  <button className="btn btn-outline-warning btn-sm">Book Now</button>
+                  <button className="btn btn-outline-warning btn-sm">Choose Now</button>
                 </div>
               </div>
             </div>
