@@ -14,6 +14,7 @@ import BikeDetails from './bikedetails';
 import Cardetails from './carsdetalis';
 import BusDetails from './busdetalis';
 import VanDetails from './vansdetails';
+import CarBookingForm from './traval';
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
   <Route path="/car-details" element={<Cardetails />} />
   <Route path="/bus-details" element={<BusDetails />} />
   <Route path="/van-details" element={<VanDetails />} />
+  <Route path="/car-booking" element={<CarBookingForm />} />
+
+
 
       </Routes>   
     </BrowserRouter>

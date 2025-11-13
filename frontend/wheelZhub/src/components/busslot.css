@@ -6,13 +6,11 @@
   min-height: 100vh;
 }
 
-/* Title */
-.car-title {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+Title 
+ .car-title {
+  font-size: 1.5rem;
   color: #333;
   text-align: center;
-  width: 100%;
   display: block;
   padding: 20px 0;
 }
@@ -94,6 +92,7 @@
 .card button:hover {
   background-color: #e65c00;
 }
+
 
 /* Responsive design */
 @media (max-width: 768px) {

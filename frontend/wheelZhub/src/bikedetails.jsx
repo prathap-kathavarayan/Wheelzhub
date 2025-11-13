@@ -22,12 +22,33 @@ function BikeDetails() {
       <button className="back-btn" onClick={() => navigate("/bikes")}>
         ← Back
       </button>
-      <div className="bikedetails-card">
-        <img src={bike.img} alt={bike.name} className="bikedetails-img" />
-        <div className="bikedetails-info">
+      <div className="bikedetails-content">
+        <div className="bike-image-container">
+          <img src={bike.img} alt={bike.name} className="bike-main-image" />
+        </div>
+        <div className="bike-info">
           <h2>{bike.name}</h2>
-          <p>{bike.desc}</p>
-          <button className="confirm-btn">Confirm Booking</button>
+          <p className="bike-description">{bike.desc}</p>
+          
+          <div className="bike-features">
+            <h3>Features & Benefits</h3>
+            <ul>
+              <li>24/7 Roadside Assistance</li>
+              <li>Comprehensive Insurance Included</li>
+              <li>Flexible Rental Duration</li>
+              <li>Well-maintained Vehicles</li>
+              <li>Helmet Provided</li>
+            </ul>
+          </div>
+          
+          <div className="booking-section">
+            <div className="price-info">
+             
+            </div>
+            <button onClick={() => navigate("/car-booking", { state: bike })}>
+              Book Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
