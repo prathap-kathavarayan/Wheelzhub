@@ -1,54 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./homepage.css";
 import { useNavigate } from "react-router-dom";
 import "./bikeslot.css";
 import "./busslot.css";
 
-import bike1 from "./images/bikeimages/bike1.avif";
-import bike2 from "./images/bikeimages/bike2.avif";
-import bike3 from "./images/bikeimages/bike3.avif";
-import bike4 from "./images/bikeimages/bike4.avif";
-import bike5 from "./images/bikeimages/bike5.avif";
-import bike6 from "./images/bikeimages/bike6.avif";
-import bike7 from "./images/bikeimages/bike7.avif";
-import bike8 from "./images/bikeimages/bike8.avif";
-import bike9 from "./images/bikeimages/bike9.avif";
-import bike10 from "./images/bikeimages/bike10.avif";
+// fallback image if backend image_url empty
+import bikeFallback from "./images/bikeimages/bike1.avif";
+
+const API_BASE = "http://localhost:8000";
 
 function Bikes() {
   const navigate = useNavigate();
+  const [bikes, setBikes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const bikeList = [
-    { name: "Royal Enfield Bullet 350", img: bike1, desc: "Classic design, 350cc engine." },
-    { name: "MT-15 Ver 2.0", img: bike2, desc: "Timeless looks, powerful ride." },
-    { name: "Bajaj Pulsar 150", img: bike3, desc: "Stylish, smooth and reliable." },
-    { name: "KTM Duke 200", img: bike4, desc: "Aggressive street bike for thrill seekers." },
-    { name: "Yamaha FZS FI V4", img: bike5, desc: "Performance and style combined." },
-    { name: "KTM RC 390", img: bike6, desc: "Dynamic design, great handling." },
-    { name: "Honda Dio", img: bike7, desc: "Sleek looks, efficient engine." },
-    { name: "Honda Activa 5G", img: bike8, desc: "Reliable and fuel-efficient." },
-    { name: "Ultraviolette F77", img: bike9, desc: "High-performance electric sportbike." },
-    { name: "Ola Electric Scooter", img: bike10, desc: "Iconic design, thrilling ride." },
-  ];
+  useEffect(() => {
+    const loadBikes = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch(`${API_BASE}/vehicles?vehicle_type=bike`);
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`API ${res.status}: ${text}`);
+        }
+        const data = await res.json();
+
+        // Convert backend vehicle to UI bike object expected by BikeDetails
+        const mapped = data.map((v) => ({
+          id: v.id,
+          name: v.name,
+          desc: v.description || "",
+          img: v.image_url && v.image_url.trim() !== "" ? v.image_url : bikeFallback,
+          price: v.price,
+          vehicle_type: v.vehicle_type,
+        }));
+
+        setBikes(mapped);
+      } catch (err) {
+        console.error("Error loading bikes:", err);
+        setError(err.message || "Failed to load bikes");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBikes();
+  }, []);
+
+  const handleBook = (bike) => {
+    navigate("/bike-details", { state: bike });
+  };
 
   return (
-    <div className="bikes-container">
-      <h2>Available Bikes</h2>
-      <button className="back-btn" onClick={() => navigate("/")}>
-        ← Back to Home
-      </button>
+    <div className="bikes-page">
+      <div className="hero-section">
+        <div className="overlay" />
+        <div className="hero-content">
+          <h1>Choose Your Ride</h1>
+          <p>All bikes are managed via admin panel and loaded dynamically.</p>
+        </div>
+      </div>
 
-      <div className="cards">
-        {bikeList.map((bike) => (
-          <div className="card" key={bike.name}>
-            <img src={bike.img} alt={bike.name} />
-            <h4>{bike.name}</h4>
-            <p>{bike.desc}</p>
-            <button onClick={() => navigate("/bike-details", { state: bike })}>
-              Book Now
-            </button>
-          </div>
-        ))}
+      <div className="rental-container">
+        {loading && <p>Loading bikes...</p>}
+        {error && (
+          <p style={{ color: "red", gridColumn: "1/-1" }}>
+            {error}
+          </p>
+        )}
+        {!loading && !error && bikes.length === 0 && (
+          <p style={{ gridColumn: "1/-1" }}>No bikes found. Add some from Admin Panel.</p>
+        )}
+
+        {!loading &&
+          !error &&
+          bikes.map((bike) => (
+            <div className="parent-card" key={bike.id}>
+              <div className="bike-card">
+                <img src={bike.img} alt={bike.name} />
+                <h4>{bike.name}</h4>
+                {bike.price && <p>₹{bike.price} / day</p>}
+                {bike.desc && <p>{bike.desc}</p>}
+                <button onClick={() => handleBook(bike)}>Book Now</button>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

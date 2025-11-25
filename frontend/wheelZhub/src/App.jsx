@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AdminPanel from './components/admin';
+
 
 // Page Components
 import Home from './components/homepage';
@@ -34,6 +36,8 @@ function App() {
   <Route path="/bus-details" element={<BusDetails />} />
   <Route path="/van-details" element={<VanDetails />} />
   <Route path="/car-booking" element={<CarBookingForm />} />
+  <Route path="/admin" element={<AdminPanel />} />
+
 
 
 

@@ -1,55 +1,83 @@
-import React from "react";
-import "./homepage.css"; // reuse same style
+import React, { useEffect, useState } from "react";
+import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-import "./carslot.css"; // optional, same style for consistency
+import "./carslot.css";
 import "./vanslot.css";
-import van1 from "./images/vanimages/van1.png";
-import van2 from "./images/vanimages/van2.png";
-import van3 from "./images/vanimages/van3.webp";
-import van4 from "./images/vanimages/van4.png";
-import van5 from "./images/vanimages/van5.png";
-import van6 from "./images/vanimages/van6.png";  
-import van7 from "./images/vanimages/van7.webp";
-import van8 from "./images/vanimages/van8.jpg";
-import van9 from "./images/vanimages/van9.png";
-import van10 from "./images/vanimages/van10.jpg";
+import vanFallback from "./images/vanimages/van1.png";
 
+const API_BASE = "http://localhost:8000";
 
 function Vans() {
   const navigate = useNavigate();
+  const [vans, setVans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const vanList = [
-    { name: "Toyota Hiace", img: van1, desc: "Spacious van ideal for group travel." },
-    { name: "Mahindra Bolero Camper", img: van2, desc: "Tough and durable utility van." },
-    { name: "Force Traveller", img: van3, desc: "Perfect for large family or tour groups." },
-    { name: "Tata Winger", img: van4, desc: "Comfortable and reliable travel van." },
-    { name: "Maruti Suzuki Eeco", img: van5, desc: "Compact van for city and highway." },
-    { name: "Renault Trafic", img: van6, desc: "Modern design with ample space." },
-    { name: "Nissan NV350", img: van7, desc: "Versatile van for business and leisure." },
-    { name: "Ford Transit", img: van8, desc: "Popular choice for group transportation." },
-    { name: "Volkswagen Transporter", img: van9, desc: "Stylish and efficient van option." },
-    { name: "Hyundai H1", img: van10, desc: "Premium van with advanced features." },
-  ];
+  useEffect(() => {
+    const loadVans = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch(`${API_BASE}/vehicles?vehicle_type=van`);
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`API ${res.status}: ${text}`);
+        }
+        const data = await res.json();
+
+        const mapped = data.map((v) => ({
+          id: v.id,
+          name: v.name,
+          desc: v.description || "",
+          img: v.image_url && v.image_url.trim() !== "" ? v.image_url : vanFallback,
+          price: v.price,
+          vehicle_type: v.vehicle_type,
+        }));
+
+        setVans(mapped);
+      } catch (err) {
+        console.error("Error loading vans:", err);
+        setError(err.message || "Failed to load vans");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadVans();
+  }, []);
+
+  const handleView = (van) => {
+    navigate("/van-details", { state: van });
+  };
 
   return (
-    <div className="cars-container">
-      <h1 className="car-title">Available Vans</h1>
-      <button className="back-btn" onClick={() => navigate("/")}>
-        ← Back to Home
-      </button>
+    <div className="vans-container">
+      <h2 className="car-title">Available Vans</h2>
+
+      {loading && <p>Loading vans...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {!loading && !error && vans.length === 0 && (
+        <p>No vans found. Add some from Admin Panel.</p>
+      )}
 
       <div className="cards">
-        {vanList.map((van) => (
-          <div className="card" key={van.name}>
-            <img src={van.img} alt={van.name} />
-            <h4>{van.name}</h4>
-            <p>{van.desc}</p>
-            <button
-              className="details-btn"
-              onClick={() => navigate("/van-details", { state: van })}>View Details
-            </button>
-          </div>
-        ))}
+        {!loading &&
+          !error &&
+          vans.map((van) => (
+            <div className="card" key={van.id}>
+              <img src={van.img} alt={van.name} />
+              <h4>{van.name}</h4>
+              {van.price && <p>₹{van.price} / day</p>}
+              {van.desc && <p>{van.desc}</p>}
+              <button
+                className="details-btn"
+                onClick={() => handleView(van)}
+              >
+                View Details
+              </button>
+            </div>
+          ))}
       </div>
     </div>
   );

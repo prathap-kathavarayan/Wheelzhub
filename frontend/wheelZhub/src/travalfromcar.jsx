@@ -15,12 +15,54 @@ export default function CarBooking() {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const next = { ...form, [name]: value };
+
+    // when pickup location changes, suggest a default dropoff/to location
+    if (name === "from") {
+      const suggestions = {
+        Chennai: "Chennai City Center",
+        Madurai: "Madurai Meenakshi",
+        Coimbatore: "Coimbatore Junction",
+      };
+      next.to = suggestions[value] || "";
+    }
+
+    setForm(next);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("✅ Booking confirmed!\n\n" + JSON.stringify(form, null, 2));
+    // build payload for backend
+    const payload = {
+      carType: form.carType,
+      from_location: form.from,
+      to: form.to,
+      pickup: form.pickup,
+      dropoff: form.dropoff,
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+    };
+
+    fetch("http://127.0.0.1:8000/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        alert("✅ Booking confirmed! Confirmation email sent.");
+        // optionally reset form
+        setForm({ carType: "", from: "", to: "", pickup: "", dropoff: "", name: "", email: "", phone: "" });
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("⚠️ Booking saved but failed to send confirmation email. Try again later.");
+      });
   };
 
   return (
@@ -36,42 +78,26 @@ export default function CarBooking() {
               <option value="SUV">On board Driver</option>
             </select>
 
-            <label>From (Pickup Location)</label>
-            <input
-              type="text"
-              name="from"
-              placeholder="Enter pickup location"
-              value={form.from}
-              onChange={handleChange}
-              required
-            />
+            <label> Pickup location </label>
+            <select name="from" value={form.from} onChange={handleChange} required>
+              <option value="">-- Choose pickup location --</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Madurai">Madurai</option>
+              <option value="Coimbatore">Coimbatore</option>
+            </select>
 
-            <label>To (Drop Location)</label>
-            <input
-              type="text"
-              name="to"
-              placeholder="Enter destination"
-              value={form.to}
-              onChange={handleChange}
-              required
-            />
+            {form.from && (
+              <p className="pickup-info">Selected pickup: {form.from} — suggested dropoff: {form.to}</p>
+            )}
 
-            <label>Pickup Date & Time</label>
+            <label>Pickup Date</label>
             <input
-              type="datetime-local"
+              type="date"
               name="pickup"
               value={form.pickup}
               onChange={handleChange}
             />
-
-            <label>Drop-off Date & Time</label>
-            <input
-              type="datetime-local"
-              name="dropoff"
-              value={form.dropoff}
-              onChange={handleChange}
-            />
-          </div>
+            </div>
 
           <div className="right">
             <label>Your Name</label>
