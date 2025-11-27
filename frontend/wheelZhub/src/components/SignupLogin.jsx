@@ -1,30 +1,43 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SignupLogin.css";
-import Link from "@mui/material/Link";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  // State to store form data and response message
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     phone: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
 
-  // Handle input change dynamically
+  const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Toggle password
+
+  // Handle input change
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    if (name === "phone") {
+      const onlyNums = value.replace(/\D/g, "");
+      setFormData({ ...formData, [name]: onlyNums });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
-  // Handle signup submission
+  // Handle signup submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // clear old message
+    setMessage("");
+
+    // Gmail validation
+    if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.email)) {
+      setMessage("Enter a valid Gmail address!");
+      return;
+    }
 
     try {
       const res = await axios.post("http://127.0.0.1:8000/signup", {
@@ -35,8 +48,9 @@ function Signup() {
       });
 
       if (res.data.message) {
-        setMessage(res.data.message);
-        setFormData({ username: "", email: "", phone: "", password: "" }); // clear form
+        alert(`${formData.username} Signup Successfully!`);
+        setFormData({ username: "", email: "", phone: "", password: "" });
+        navigate("/login");
       } else if (res.data.error) {
         setMessage(res.data.error);
       }
@@ -49,6 +63,7 @@ function Signup() {
   return (
     <div className="signup">
       <h2>SIGNUP HERE</h2>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
@@ -71,6 +86,7 @@ function Signup() {
             value={formData.email}
             onChange={handleChange}
             required
+            placeholder="example@gmail.com"
           />
         </div>
 
@@ -83,29 +99,42 @@ function Signup() {
             value={formData.phone}
             onChange={handleChange}
             required
+            maxLength={10}
           />
         </div>
 
-        <div>
+        <div style={{ position: "relative" }}>
           <label htmlFor="password">Password:</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
           />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "35px",
+              cursor: "pointer",
+              userSelect: "none",
+              fontSize: "18px",
+            }}
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
         </div>
 
         <button type="submit">Signup</button>
       </form>
 
-      {/* Feedback Message */}
       {message && <p className="message">{message}</p>}
 
       <h3 id="fp">
-        Already have an account? <Link href="/login">Login here</Link>
+        Already have an account? <Link to="/login">Login here</Link>
       </h3>
     </div>
   );
