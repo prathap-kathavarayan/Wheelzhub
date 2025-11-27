@@ -1,15 +1,14 @@
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginSignup.css";
-import Link from "@mui/material/Link";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,16 +17,20 @@ function Login() {
       const response = await axios.get("http://127.0.0.1:8000/login", {
         params: {
           email: email,
-          password_hash: password, // match FastAPI param name
+          password_hash: password,
         },
       });
 
-      setMessage(response.data.message);
-      console.log(response.data);
-      alert("Login successful!");
+      // Assuming response.data contains user info like { message: "Success", name: "Ajith" }
+      if (response.data.message) {
+        // POPUP with username (or email if name not available)
+        const username = response.data.name || email;
+        alert(` Login Successfully!`);
 
-      // optional redirect example:
-      // window.location.href = "/dashboard";
+        // Redirect to home page
+        navigate("/");
+      }
+
     } catch (error) {
       console.error(error);
       if (error.response && error.response.status === 401) {
@@ -72,7 +75,7 @@ function Login() {
       {message && <p className="msg">{message}</p>}
 
       <h3 id="fp">
-        Don't have an account? <Link href="/signup">Signup here</Link>
+        Don't have an account? <Link to="/signup">Signup here</Link>
       </h3>
     </div>
   );
