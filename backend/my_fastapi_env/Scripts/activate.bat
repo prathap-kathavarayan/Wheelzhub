@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\SAIFUL\Desktop\project2025\wheelzhub\backend\my_fastapi_env"
+set "VIRTUAL_ENV=C:\Users\SAIFUL\Desktop\project2025\Wheelzhub\backend\my_fastapi_env"
 
 if not defined PROMPT set PROMPT=$P$G
 

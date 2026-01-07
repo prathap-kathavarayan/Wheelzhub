@@ -27,7 +27,7 @@ function CarDetails() {
         <div className="cardetails-info">
           <h2>{car.name}</h2>
           <p>{car.desc}</p>
-           <button onClick={() => navigate("/car-booking", { state: car })}>
+           <button onClick={() => navigate("/signup", { state: car })}>
               Book Now
             </button>
         </div>

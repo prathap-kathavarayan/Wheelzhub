@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./homepage.css"; // reuse same style
-import { useNavigate } from "react-router-dom";
 import "./busslot.css";
+import { useNavigate } from "react-router-dom";
 import busFallback from "./images/busimages/bus1.png";
 
 const API_BASE = "http://localhost:8000";
@@ -52,6 +52,13 @@ function Buses() {
 
   return (
     <div className="buses-container">
+      {/* BACK BUTTON */}
+      <div className="header-bar">
+        <button className="back-btn" onClick={() => navigate("/")}>
+           Back
+        </button>
+      </div>
+
       <h2 className="car-title">Available Buses</h2>
 
       {loading && <p>Loading buses...</p>}

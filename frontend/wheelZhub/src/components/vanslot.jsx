@@ -24,13 +24,17 @@ function Vans() {
           const text = await res.text();
           throw new Error(`API ${res.status}: ${text}`);
         }
+
         const data = await res.json();
 
         const mapped = data.map((v) => ({
           id: v.id,
           name: v.name,
           desc: v.description || "",
-          img: v.image_url && v.image_url.trim() !== "" ? v.image_url : vanFallback,
+          img:
+            v.image_url && v.image_url.trim() !== ""
+              ? v.image_url
+              : vanFallback,
           price: v.price,
           vehicle_type: v.vehicle_type,
         }));
@@ -47,12 +51,23 @@ function Vans() {
     loadVans();
   }, []);
 
+  /* 🔙 BACK TO HOME */
+  const handleBack = () => {
+    navigate("/"); // Home page
+  };
+
+  /* 🔍 VIEW DETAILS */
   const handleView = (van) => {
     navigate("/van-details", { state: van });
   };
 
   return (
     <div className="vans-container">
+      {/* BACK BUTTON */}
+      <button className="back-btn" onClick={handleBack}>
+        Back
+      </button>
+
       <h2 className="car-title">Available Vans</h2>
 
       {loading && <p>Loading vans...</p>}
@@ -70,6 +85,7 @@ function Vans() {
               <h4>{van.name}</h4>
               {van.price && <p>₹{van.price} / day</p>}
               {van.desc && <p>{van.desc}</p>}
+
               <button
                 className="details-btn"
                 onClick={() => handleView(van)}

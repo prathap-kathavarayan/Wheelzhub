@@ -24,6 +24,7 @@ export default function CarBooking() {
         Chennai: "Chennai City Center",
         Madurai: "Madurai Meenakshi",
         Coimbatore: "Coimbatore Junction",
+        Chennai:"velachery",
       };
       next.to = suggestions[value] || "";
     }

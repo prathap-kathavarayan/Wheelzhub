@@ -1,6 +1,6 @@
 import React from "react";
 import "./About.css";
-import carrent1 from "./images/carrent1.jpg"; // replace with your own image
+import carrent1 from "./images/mainimg.jpg"; // replace with your own image
 
 function About() {
   return (

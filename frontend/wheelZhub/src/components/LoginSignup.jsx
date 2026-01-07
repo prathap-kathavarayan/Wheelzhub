@@ -14,43 +14,31 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://127.0.0.1:8000/login", {
+      const res = await axios.get("http://127.0.0.1:8000/login", {
         params: {
           email: email,
           password_hash: password,
         },
       });
 
-      // Assuming response.data contains user info like { message: "Success", name: "Ajith" }
-      if (response.data.message) {
-        // POPUP with username (or email if name not available)
-        const username = response.data.name || email;
-        alert(` Login Successfully!`);
-
-        // Redirect to home page
-        navigate("/");
+      if (res.data.message) {
+        alert("Login Successfully!");
+        navigate("/car-booking");
       }
-
-    } catch (error) {
-      console.error(error);
-      if (error.response && error.response.status === 401) {
-        setMessage("Invalid email or password.");
-      } else {
-        setMessage("Something went wrong. Please try again.");
-      }
+    } catch (err) {
+      setMessage("Invalid email or password");
     }
   };
 
   return (
     <div className="login">
       <h2 id="lp">LOGIN HERE</h2>
+
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label>Email</label>
           <input
             type="email"
-            id="email"
-            name="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -58,11 +46,9 @@ function Login() {
         </div>
 
         <div>
-          <label htmlFor="password">Password:</label>
+          <label>Password</label>
           <input
             type="password"
-            id="password"
-            name="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -70,13 +56,13 @@ function Login() {
         </div>
 
         <button type="submit">Login</button>
+
+        {message && <p className="msg">{message}</p>}
+
+        <p id="fp">
+          Don't have an account? <Link to="/signup">Signup here</Link>
+        </p>
       </form>
-
-      {message && <p className="msg">{message}</p>}
-
-      <h3 id="fp">
-        Don't have an account? <Link to="/signup">Signup here</Link>
-      </h3>
     </div>
   );
 }

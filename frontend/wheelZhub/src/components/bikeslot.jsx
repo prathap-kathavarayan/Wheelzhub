@@ -56,6 +56,13 @@ function Bikes() {
 
   return (
     <div className="bikes-page">
+      {/* BACK BUTTON */}
+      <div className="header-bar" style={{ padding: "20px" }}>
+        <button className="back-btn" onClick={() => navigate("/")}>
+           Back
+        </button>
+      </div>
+
       <div className="hero-section">
         <div className="overlay" />
         <div className="hero-content">
@@ -67,12 +74,12 @@ function Bikes() {
       <div className="rental-container">
         {loading && <p>Loading bikes...</p>}
         {error && (
-          <p style={{ color: "red", gridColumn: "1/-1" }}>
-            {error}
-          </p>
+          <p style={{ color: "red", gridColumn: "1/-1" }}>{error}</p>
         )}
         {!loading && !error && bikes.length === 0 && (
-          <p style={{ gridColumn: "1/-1" }}>No bikes found. Add some from Admin Panel.</p>
+          <p style={{ gridColumn: "1/-1" }}>
+            No bikes found. Add some from Admin Panel.
+          </p>
         )}
 
         {!loading &&

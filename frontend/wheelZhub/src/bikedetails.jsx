@@ -45,7 +45,7 @@ function BikeDetails() {
             <div className="price-info">
              
             </div>
-            <button onClick={() => navigate("/car-booking", { state: bike })}>
+            <button onClick={() => navigate("/signup", { state: bike })}>
               Book Now
             </button>
           </div>

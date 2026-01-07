@@ -52,8 +52,16 @@ function Cars() {
     navigate("/car-details", { state: car });
   };
 
+  const handleBack = () => {
+    navigate(-1); // Goes back to the previous page
+  };
+
   return (
     <div className="cars-container">
+      <button className="back-btn" onClick={handleBack}>
+         Back
+      </button>
+
       <h2 className="car-title">Available Cars</h2>
 
       {loading && <p>Loading cars...</p>}
